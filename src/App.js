@@ -1,26 +1,55 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import strips from './lib/strips';
+import domainParser from './strips/domainParser';
+import problemParser from './strips/problemParser';
+import * as helper from './helper';
+import getDomainText from './strips/domain';
+import getProblemText from './strips/problem';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+class App extends React.Component {
+
+  componentDidMount () {
+    const nations = new Array(10).fill('').map((i) => {
+      const nation = helper.createEntity();
+      return nation;
+    });
+    console.table(nations);
+
+    // console.log(grammar());
+    
+    let domain = domainParser.parse(getDomainText());
+    console.log('domain', domain);
+    let problem = problemParser.parse(getProblemText());
+    console.log('problem', problem);
+
+    strips.loadFromJson(domain, problem, function (domain, problem) {
+      // Run the problem against the domain, using depth-first-search.
+      var solutions = strips.solve(domain, problem);
+      // Display each solution.
+      for (var i in solutions) {
+        var solution = solutions[i];
+        console.log('- Solution found in ' + solution.steps + ' steps!');
+        for (var i = 0; i < solution.path.length; i++) {
+          console.log((i + 1) + '. ' + solution.path[i]);
+        }
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            STRIPS
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
