@@ -35,7 +35,7 @@ export default function problem () {
         (in browndust box2)
     )
 
-    (:goal (and (has-fireball npc)))
+    (:goal (and (has-fireball npc) (at npc river)))
     )
   `
 }

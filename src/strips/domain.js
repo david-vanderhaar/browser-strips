@@ -1,5 +1,6 @@
 export default function domain () { 
-  return `
+  const texts = [
+    `
     ;; Magic World PDDL Domain - by Kory Becker http://primaryobjects.com/kory-becker
     ;; Example from the node.js strips library http://npmjs.org/strips
 
@@ -43,5 +44,27 @@ export default function domain () {
           :effect (and (has-fireball ?p) (not (has-fire ?p) not (has-earth ?p)))
       )
     )
-  `
+    `,
+    `
+    (define (domain war)
+      (:requirements :strips :typing)
+      (:types kingdom location army)
+
+      (:action move
+          :parameters (?army - army ?location1 - location ?location2 - location)
+          :precondition (and (at ?army ?location1) (border ?location1 ?location2) (not (guarded ?location2)))
+          :effect (and (at ?army ?location2) (not (at ?army ?location1)))
+      )
+
+      (:action attack
+          :parameters (?army_1 - army ?army_2 - army ?l1 - location ?l2 - location)
+          :precondition (and (at ?army_1 ?l1) (at ?army_2 ?l2) (border ?l1 ?l2) (guarded ?l2))
+          :effect (not (at ?army_2 ?l2) not (guarded ?l2))
+      )
+
+    )
+    `,
+  ];
+
+  return texts[0]
 }

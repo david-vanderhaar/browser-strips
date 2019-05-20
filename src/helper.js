@@ -5,7 +5,9 @@ export function createEntity() {
     id: uuid(),
     name: composeName([namePrefixes, nameSuffixes]),
     gold: getRandomIntInclusive(10, 1000),
+    gold_needed: 0,
     armies: getRandomIntInclusive(0, 10),
+    armies_needed: 0,
     honor: getRandomIntInclusive(0, 10),
     glory: getRandomIntInclusive(0, 10),
     territories: getRandomIntInclusive(1, 5),
@@ -17,8 +19,17 @@ const namePrefixes = [
   'Sun',
   'Black',
   'White',
+  'Light',
+  'Shadow',
+  'Red',
+  'Green',
+  'Gray',
   'Mighty',
   'Wither',
+  'Gale',
+  'Hay',
+  'Stone',
+  'River',
 ]
 
 const nameSuffixes = [
@@ -28,6 +39,12 @@ const nameSuffixes = [
   'Peaks',
   'Born',
   'Still',
+  'Wood',
+  'Wine',
+  'Run',
+  'Guard',
+  'Fell',
+  'Fall',
 ]
 
 const composeName = (namePartLists = []) => {
