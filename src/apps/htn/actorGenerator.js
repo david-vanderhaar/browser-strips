@@ -1,5 +1,4 @@
 import uuid from 'uuid/v1';
-import * as Fsm from './fsm';
 import * as Helper from '../helper';
 
 const TRAIT_MIN = 0;
@@ -27,7 +26,6 @@ export function createEntity() {
     ],
     territories: Helper.getRandomIntInclusive(1, 5),
     action_points: 20,
-    states: null,
     traits: {
       honor: Helper.getRandomIntInclusive(TRAIT_MIN, TRAIT_MAX),
       glory: Helper.getRandomIntInclusive(TRAIT_MIN, TRAIT_MAX),
@@ -35,14 +33,6 @@ export function createEntity() {
       frugality: Helper.getRandomIntInclusive(TRAIT_MIN, TRAIT_MAX),
       war_mongering: Helper.getRandomIntInclusive(TRAIT_MIN, TRAIT_MAX),
     },
-  }
-
-  actor.states = {
-    main: new Fsm.Fsm({ actor })
-  }
-  actor.update = (world_state) => {
-    const current_state = actor.states.main.state;
-    Fsm[current_state](actor, world_state);
   }
   return actor;
 }

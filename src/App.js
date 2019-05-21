@@ -2,7 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 // import StripsApp from './apps/StripsApp';
-import FsmApp from './apps/fsm/FsmApp';
+import HtnApp from './apps/htn/HtnApp';
+// import FsmApp from './apps/fsm/FsmApp';
 
 class App extends React.Component {
   render() {
@@ -11,7 +12,8 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           {/* <StripsApp /> */}
-          <FsmApp />
+          <HtnApp />
+          {/* <FsmApp /> */}
         </header>
       </div>
     );

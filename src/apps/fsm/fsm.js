@@ -1,5 +1,5 @@
 import stateMachine from 'javascript-state-machine';
-import * as Helper from './helper';
+import * as Helper from '../helper';
 
 export class Fsm extends stateMachine {
   constructor(actor) {

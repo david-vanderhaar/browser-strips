@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-// import * as helper from '../../helper';
 import * as actorGen from './actorGenerator';
 
 class FsmApp extends React.Component {
